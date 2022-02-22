@@ -47,6 +47,10 @@ std::unique_ptr<Polisher> createPolisher(const std::string& sequences_path,
     bool cuda_banded_alignment = false, uint32_t cudaaligner_batches = 0,
     uint32_t cudaaligner_band_width = 0);
 
+class EmptyOverlapSetError : public std::runtime_error {
+  using std::runtime_error::runtime_error;
+};
+
 class Polisher {
 public:
     virtual ~Polisher();

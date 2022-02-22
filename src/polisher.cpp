@@ -362,9 +362,7 @@ void Polisher::initialize() {
     std::unordered_map<uint64_t, uint64_t>().swap(id_to_id);
 
     if (overlaps.empty()) {
-        fprintf(stderr, "[racon::Polisher::initialize] error: "
-            "empty overlap set!\n");
-        exit(1);
+        throw EmptyOverlapSetError("[racon::Polisher::initialize] error: empty overlap set!");
     }
 
     logger_->log("[racon::Polisher::initialize] loaded overlaps");
