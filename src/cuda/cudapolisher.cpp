@@ -132,7 +132,7 @@ void CUDAPolisher::find_overlap_breaking_points(std::vector<std::unique_ptr<Over
                         }
                         else if (logger_step != 0 && log_bar_idx < static_cast<int32_t>(RACON_LOGGER_BIN_SIZE))
                         {
-                            logger_->bar("[racon::CUDAPolisher::initialize] aligning overlaps");
+                            // logger_->bar("[racon::CUDAPolisher::initialize] aligning overlaps");
                             log_bar_idx_prev = log_bar_idx;
                         }
                     }
@@ -405,7 +405,7 @@ void CUDAPolisher::polish(std::vector<std::unique_ptr<Sequence>>& dst,
             windows_[i].reset();
         }
 
-        logger_->log("[racon::CUDAPolisher::polish] generated consensus");
+        // logger_->log("[racon::CUDAPolisher::polish] generated consensus");
 
         // Clear POA processors.
         batch_processors_.clear();
