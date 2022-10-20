@@ -11,6 +11,7 @@
 #include <memory>
 #include <unordered_map>
 #include <thread>
+#include <stdexcept>
 
 namespace bioparser {
     template<class T>
