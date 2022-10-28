@@ -92,12 +92,8 @@ std::unique_ptr<Polisher> createPolisher(const std::string& sequences_path,
         sparser = bioparser::Parser<Sequence>::Create<bioparser::FastqParser>(
             sequences_path);
     } else {
-        fprintf(stderr, "[racon::createPolisher] error: "
-            "file %s has unsupported format extension (valid extensions: "
-            ".fasta, .fasta.gz, .fna, .fna.gz, .fa, .fa.gz, .fastq, .fastq.gz, "
-            ".fq, .fq.gz)!\n",
-            sequences_path.c_str());
-        exit(1);
+      sparser = bioparser::Parser<Sequence>::Create<bioparser::FastaParser>(
+        sequences_path);
     }
 
     if (is_suffix(overlaps_path, ".mhap") || is_suffix(overlaps_path, ".mhap.gz")) {
@@ -110,10 +106,8 @@ std::unique_ptr<Polisher> createPolisher(const std::string& sequences_path,
         oparser = bioparser::Parser<Overlap>::Create<bioparser::SamParser>(
             overlaps_path);
     } else {
-        fprintf(stderr, "[racon::createPolisher] error: "
-            "file %s has unsupported format extension (valid extensions: "
-            ".mhap, .mhap.gz, .paf, .paf.gz, .sam, .sam.gz)!\n", overlaps_path.c_str());
-        exit(1);
+      oparser = bioparser::Parser<Overlap>::Create<bioparser::PafParser>(
+        overlaps_path);
     }
 
     if (is_suffix(target_path, ".fasta") || is_suffix(target_path, ".fasta.gz") ||
@@ -126,12 +120,8 @@ std::unique_ptr<Polisher> createPolisher(const std::string& sequences_path,
         tparser = bioparser::Parser<Sequence>::Create<bioparser::FastqParser>(
             target_path);
     } else {
-        fprintf(stderr, "[racon::createPolisher] error: "
-            "file %s has unsupported format extension (valid extensions: "
-            ".fasta, .fasta.gz, .fna, .fna.gz, .fa, .fa.gz, .fastq, .fastq.gz, "
-            ".fq, .fq.gz)!\n",
-            target_path.c_str());
-        exit(1);
+      tparser = bioparser::Parser<Sequence>::Create<bioparser::FastaParser>(
+        target_path);
     }
 
     if (cudapoa_batches > 0 || cudaaligner_batches > 0)
